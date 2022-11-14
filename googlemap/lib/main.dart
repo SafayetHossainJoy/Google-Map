@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:googlemap/google_search_places_api.dart';
 import 'package:googlemap/map.dart';
 
 void main() {
@@ -12,7 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: map(),
+      //home: map(),
+      home: GoogleSearchPlacesApi(),
     );
   }
 }
