@@ -62,15 +62,41 @@ class _GoogleSearchPlacesApiState extends State<GoogleSearchPlacesApi> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         elevation: 0,
-        title: Text(
-          'Where to?',
+        leading: InkWell(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => map(),
+                ));
+          },
+          child: Icon(
+            Icons.arrow_back_ios_new,
+            color: Colors.black,
+          ),
         ),
       ),
       body: Card(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(right: 12, top: 12),
+              padding: const EdgeInsets.all(8),
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                "Where to?",
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
             Align(
               alignment: Alignment.topCenter,
               child: TextField(
