@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:googlemap/map.dart';
 import 'package:uuid/uuid.dart';
 import 'package:http/http.dart' as http;
 
@@ -63,46 +64,51 @@ class _GoogleSearchPlacesApiState extends State<GoogleSearchPlacesApi> {
       appBar: AppBar(
         elevation: 0,
         title: Text(
-          'Search places',
+          'Where to?',
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Align(
-            alignment: Alignment.topCenter,
-            child: TextField(
-              controller: _controller,
-              decoration: InputDecoration(
-                hintText: "Seek your location here",
-                focusColor: Colors.white,
-                floatingLabelBehavior: FloatingLabelBehavior.never,
-                prefixIcon: Icon(Icons.map),
-                suffixIcon: IconButton(
-                  icon: Icon(Icons.cancel),
-                  onPressed: () {
-                    _controller.clear();
-                  },
+      body: Card(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Align(
+              alignment: Alignment.topCenter,
+              child: TextField(
+                controller: _controller,
+                decoration: InputDecoration(
+                  hintText: "Search destinations",
+                  focusColor: Colors.white,
+                  floatingLabelBehavior: FloatingLabelBehavior.never,
+                  prefixIcon: Icon(Icons.search),
+                  suffixIcon: IconButton(
+                    icon: Icon(Icons.cancel),
+                    onPressed: () {
+                      _controller.clear();
+                    },
+                  ),
                 ),
               ),
             ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: _placeList.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () async {},
-                  child: ListTile(
-                    title: Text(_placeList[index]["description"]),
-                  ),
-                );
-              },
-            ),
-          )
-        ],
+            Expanded(
+              child: ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: _placeList.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () async {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => map()));
+                    },
+                    child: ListTile(
+                      title: Text(_placeList[index]["description"]),
+                    ),
+                  );
+                },
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
