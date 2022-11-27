@@ -13,7 +13,7 @@ class GoogleSearchPlacesApi extends StatefulWidget {
 class _GoogleSearchPlacesApiState extends State<GoogleSearchPlacesApi> {
   var _controller = TextEditingController();
   var uuid = new Uuid();
-  String _sessionToken = '1234567890';
+  String _sessionToken = '';
   List<dynamic> _placeList = [];
 
   @override
@@ -38,8 +38,7 @@ class _GoogleSearchPlacesApiState extends State<GoogleSearchPlacesApi> {
     String type = '(regions)';
 
     try {
-      String baseURL =
-          'https://maps.googleapis.com/maps/api/place/autocomplete/json';
+      String baseURL = '';
       String request =
           '$baseURL?input=$input&key=$kPLACES_API_KEY&sessiontoken=$_sessionToken';
       var response = await http.get(Uri.parse(request));

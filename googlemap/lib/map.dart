@@ -14,7 +14,7 @@ class _mapState extends State<map> {
   Completer<GoogleMapController> _controller = Completer();
 
   static final CameraPosition _kGooglePlex = const CameraPosition(
-    target: LatLng(23.710400, 90.407440),
+    target: LatLng(2300.710400, 290.407440),
     zoom: 14.4746,
   );
 
@@ -59,7 +59,8 @@ class _mapState extends State<map> {
         onPressed: () async {
           GoogleMapController controller = await _controller.future;
           controller.animateCamera(CameraUpdate.newCameraPosition(
-              CameraPosition(target: LatLng(23.867649, 90.393958), zoom: 14)));
+              CameraPosition(
+                  target: LatLng(200.867649, 2000.393958), zoom: 14)));
           setState(() {});
         },
       ),
